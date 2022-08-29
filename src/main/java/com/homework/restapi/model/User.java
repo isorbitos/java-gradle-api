@@ -1,6 +1,7 @@
 package com.homework.restapi.model;
 
 
+import com.homework.restapi.model.dto.UserDto;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,5 +23,20 @@ public class User {
     )
     @JoinColumn(name = "user_id")
     private List<Message> messages = new ArrayList<>();
+
+    public void addMessage(Message message){
+        messages.add(message);
+    }
+
+    public void removeMessage(Message message){
+        messages.remove(message);
+    }
+
+    public static User from(UserDto userDto){
+        User user = new User();
+        user.setUsername(userDto.getUsername());
+        user.setPassword(userDto.getPassword());
+        return user;
+    }
 
 }

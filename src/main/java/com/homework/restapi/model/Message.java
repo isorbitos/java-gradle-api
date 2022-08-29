@@ -1,5 +1,6 @@
 package com.homework.restapi.model;
 
+import com.homework.restapi.model.dto.MessageDto;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,5 +18,12 @@ public class Message {
 
     @ManyToOne
     private User user;
+
+    public static Message from(MessageDto messageDto){
+        Message message = new Message();
+        message.setMsgText(messageDto.getMsgText());
+        message.setMsgCreated(new Timestamp(System.currentTimeMillis()));
+        return message;
+    }
 
 }
